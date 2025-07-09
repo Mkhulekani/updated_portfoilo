@@ -38,9 +38,9 @@
                 <a href="#contact" class="button">Contact</a>
             </div>
             <div class="home__social">
-                <a href="https://linkedin.com" target="_blank" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.linkedin.com/in/khulekani-mtshali-94b62a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://behance.net" target="_blank" class="home__social-icon"><i class='bx bxl-behance'></i></a>
-                <a href="https://github.com" target="_blank" class="home__social-icon"><i class='bx bxl-github'></i></a>
+                <a href="https://github.com/Mkhulekani?tab=repositories" target="_blank" class="home__social-icon"><i class='bx bxl-github'></i></a>
             </div>
             <div class="home__img">
                 <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
@@ -239,12 +239,17 @@
         <section class="contact section" id="contact">
             <h2 class="section-title">Contact</h2>
             <div class="contact__container bd-grid">
-                <form action="" class="contact__form">
-                    <input type="text" placeholder="Name" class="contact__input" required>
-                    <input type="email" placeholder="Email" class="contact__input" required>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                     <!-- Replace with your Access Key -->
+                    <input type="hidden" name="access_key" value="75c866bf-80c4-4038-bacb-964107e6e483">
+                    <input type="text" name="name" placeholder="Name" class="contact__input" required>
+                    <input type="email" name="email" placeholder="Email" class="contact__input" required>
                     <textarea name="message" cols="0" rows="10" placeholder="Your message" class="contact__input" required></textarea>
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
                     <input type="submit" value="Send" class="contact__button button">
                 </form>
+                <div id="formResponse" class="form-response"></div>
             </div>
         </section>
     </main>

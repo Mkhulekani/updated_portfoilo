@@ -1,4 +1,8 @@
+
+
 /*===== GOOGLE FONTS =====*/
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 /*===== VARIABLES CSS =====*/
@@ -259,6 +263,67 @@ img {
     transform: translateY(-2px);
 }
 
+/* CV Button Styles */
+.cv-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: var(--font-semi);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.cv-button.download-button {
+    background-color: var(--first-color);
+    color: white;
+}
+
+.cv-button.upload-button {
+    background-color: #4285f4;
+    color: white;
+}
+
+.cv-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cv-button__icon {
+    margin-left: 0.5rem;
+}
+
+/* Upload Status Message */
+.upload-status {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.upload-status.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.upload-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
 /* ===== ABOUT =====*/
 .about__container {
     row-gap: 2rem;
@@ -517,6 +582,30 @@ img {
     margin-left: auto;
 }
 
+/* ===== FORM RESPONSE ===== */
+.form-response {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+
+.form-response.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.form-response.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
 /* ===== FOOTER =====*/
 .footer {
     background-color: var(--second-color);
@@ -650,6 +739,7 @@ img {
         grid-template-columns: repeat(3, 1fr);
         column-gap: 2rem;
     }
+    
     .work__overlay-title {
         font-size: 1.75rem;
     }
