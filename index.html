@@ -34,7 +34,7 @@
         <!-- HOME -->
         <section class="home bd-grid" id="home">
             <div class="home__data">
-                <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Khulekani</span><br> Software Developer</h1>
+                <h1 class="home__title"><span id="typing-text"></span><span class="home__title-color" id="name-text"></span><br><span id="job-text"></span></h1>
                 <a href="#contact" class="button">Contact</a>
                 
                 <!-- CV Buttons -->
@@ -281,6 +281,76 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
+        // Typing animation for home section
+        function typeWriter() {
+            const typingText = document.getElementById('typing-text');
+            const nameText = document.getElementById('name-text');
+            const jobText = document.getElementById('job-text');
+            
+            // Clear any existing text
+            typingText.textContent = '';
+            nameText.textContent = '';
+            jobText.textContent = '';
+            
+            // Text to be typed
+            const greeting = "Hi,\nI'am ";
+            const name = "Khulekani";
+            const job = "Software Developer";
+            
+            let i = 0;
+            let speed = 100; // typing speed in ms
+            
+            // Type greeting
+            function typeGreeting() {
+                if (i < greeting.length) {
+                    typingText.textContent += greeting.charAt(i);
+                    i++;
+                    setTimeout(typeGreeting, speed);
+                } else {
+                    i = 0;
+                    typeName();
+                }
+            }
+            
+            // Type name
+            function typeName() {
+                if (i < name.length) {
+                    nameText.textContent += name.charAt(i);
+                    i++;
+                    setTimeout(typeName, speed);
+                } else {
+                    i = 0;
+                    typeJob();
+                }
+            }
+            
+            // Type job
+            function typeJob() {
+                if (i < job.length) {
+                    jobText.textContent += job.charAt(i);
+                    i++;
+                    setTimeout(typeJob, speed);
+                }
+            }
+            
+            // Start typing
+            typeGreeting();
+        }
+
+        // Run typing animation when home section is shown
+        document.addEventListener('DOMContentLoaded', function() {
+            typeWriter();
+            
+            // Re-run animation when home link is clicked
+            const homeLink = document.querySelector('.nav__link[href="#home"]');
+            homeLink.addEventListener('click', function() {
+                // Only run if we're actually on the home section
+                if (window.location.hash === '#home' || window.location.hash === '') {
+                    typeWriter();
+                }
+            });
+        });
+
         // Navigation functionality
         const navMenu = document.getElementById('nav-menu');
         const navToggle = document.getElementById('nav-toggle');
