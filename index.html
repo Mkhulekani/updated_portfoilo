@@ -9,19 +9,6 @@
     <!-- Boxicons - Enhanced icon library -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
-    <!-- Animation Libraries Options (commented out by default) -->
-    <!-- Option 1: AOS (Animate On Scroll) -->
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-    
-    <!-- Option 2: Lottie Files -->
-    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
-    
-    <!-- Option 3: GSAP -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script> -->
-    
-    <!-- Option 4: Animate.css -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> -->
-    
     <style>
         /* Chatbox styles */
         .chatbox-container {
@@ -35,6 +22,38 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chatbox-header {
+            background-color: #4e54c8;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .chatbox-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .chatbox-header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chatbox-header-actions i {
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .chatbox-iframe-container {
+            flex: 1;
         }
         
         .chatbox-container iframe {
@@ -68,6 +87,15 @@
             transform: translateY(120%);
             opacity: 0;
             pointer-events: none;
+        }
+        
+        .chatbox-minimized {
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .chatbox-minimized .chatbox-iframe-container {
+            display: none;
         }
     </style>
 </head>
@@ -366,21 +394,20 @@
         <i class='bx bx-message-dots'></i>
     </div>
     <div class="chatbox-container chatbox-hidden">
-        <iframe src="https://cdn.botpress.cloud/webchat/v3.1/shareable.html?configUrl=https://files.bpcontent.cloud/2025/03/13/06/20250313061541-5DATD6HC.json" width="100%" height="100%" frameborder="0"></iframe>
+        <div class="chatbox-header">
+            <h3>Chat with me</h3>
+            <div class="chatbox-header-actions">
+                <i class='bx bx-minus minimize-chat'></i>
+                <i class='bx bx-x close-chat'></i>
+            </div>
+        </div>
+        <div class="chatbox-iframe-container">
+            <iframe src="https://cdn.botpress.cloud/webchat/v3.1/shareable.html?configUrl=https://files.bpcontent.cloud/2025/03/13/06/20250313061541-5DATD6HC.json" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
     </div>
 
     <!-- Enhanced ScrollReveal with latest version -->
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
-    
-    <!-- Animation Libraries JS (commented out by default) -->
-    <!-- Option 1: AOS JS -->
-    <!-- <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-    </script> -->
     
     <script>
         // Typing animation for home section
@@ -788,9 +815,29 @@
         // Chatbox functionality
         const chatboxToggle = document.querySelector('.chatbox-toggle');
         const chatboxContainer = document.querySelector('.chatbox-container');
+        const minimizeBtn = document.querySelector('.minimize-chat');
+        const closeBtn = document.querySelector('.close-chat');
         
         chatboxToggle.addEventListener('click', function() {
-            chatboxContainer.classList.toggle('chatbox-hidden');
+            chatboxContainer.classList.remove('chatbox-hidden');
+            chatboxContainer.classList.remove('chatbox-minimized');
+        });
+        
+        minimizeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            chatboxContainer.classList.toggle('chatbox-minimized');
+        });
+        
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            chatboxContainer.classList.add('chatbox-hidden');
+        });
+        
+        // Allow clicking on header to restore minimized chat
+        document.querySelector('.chatbox-header').addEventListener('click', function() {
+            if (chatboxContainer.classList.contains('chatbox-minimized')) {
+                chatboxContainer.classList.remove('chatbox-minimized');
+            }
         });
     </script>
 </body>
