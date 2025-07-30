@@ -701,3 +701,51 @@ img {
     width: 450px;
   }
 }
+
+        /* Chatbox styles */
+        .chatbox-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            z-index: 9999;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbox-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .chatbox-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #4e54c8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9998;
+        }
+        
+        .chatbox-toggle i {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .chatbox-hidden {
+            transform: translateY(120%);
+            opacity: 0;
+            pointer-events: none;
+        }
+  
