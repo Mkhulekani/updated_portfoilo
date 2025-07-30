@@ -543,52 +543,150 @@
             });
         }
 
-        // Enhanced ScrollReveal Animation with better configurations
+        // Enhanced ScrollReveal Animation with Framer Motion-like effects
         if (typeof ScrollReveal !== 'undefined') {
             const sr = ScrollReveal({
                 origin: 'top',
                 distance: '80px',
-                duration: 2000,
+                duration: 1500,
                 delay: 200,
-                reset: false // Don't repeat animations
+                reset: false,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)', // Framer Motion-like easing
+                scale: 0.9,
+                opacity: 0
             });
 
-            // Home section animations
-            sr.reveal('.home__data', {origin: 'left', distance: '80px'});
-            sr.reveal('.home__img', {origin: 'right', distance: '80px', delay: 400});
-            sr.reveal('.home__social-icon', {interval: 200, origin: 'bottom', distance: '60px'});
-
-            // About section animations
-            sr.reveal('.about__img', {origin: 'left', distance: '80px'});
-            sr.reveal('.about__text-container', {origin: 'right', distance: '80px', delay: 400});
-
-            // Skills section animations
-            sr.reveal('.skills__subtitle, .skills__text', {origin: 'left', distance: '80px'});
-            sr.reveal('.skills__data', {interval: 200, origin: 'left', distance: '60px'});
-            sr.reveal('.skills__img', {origin: 'right', distance: '80px', delay: 600});
-
-            // Work section animations
-            sr.reveal('.work__item', {
-                interval: 200,
-                origin: 'bottom',
-                distance: '60px',
+            // Home section - Framer Motion style entrance
+            sr.reveal('.home__data', {
+                origin: 'left', 
+                distance: '100px',
+                duration: 1200,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 scale: 0.8
             });
-
-            // Contact section animations
-            sr.reveal('.contact__input', {
-                interval: 100,
-                origin: 'bottom',
-                distance: '40px'
+            
+            sr.reveal('.home__img', {
+                origin: 'right', 
+                distance: '100px', 
+                delay: 600,
+                duration: 1200,
+                scale: 0.7,
+                rotate: {x: 15, y: 15, z: 0}
+            });
+            
+            sr.reveal('.home__social-icon', {
+                interval: 150, 
+                origin: 'bottom', 
+                distance: '80px',
+                scale: 0.6,
+                duration: 800,
+                easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' // Bounce effect
             });
 
-            // Section titles
-            sr.reveal('.section-title', {
-                origin: 'top',
-                distance: '60px',
+            // About section - Staggered animations
+            sr.reveal('.about__img', {
+                origin: 'left', 
+                distance: '120px',
+                scale: 0.8,
                 duration: 1000
             });
+            
+            sr.reveal('.about__text-container', {
+                origin: 'right', 
+                distance: '120px', 
+                delay: 400,
+                duration: 1000
+            });
+
+            // Skills section - Progressive reveal
+            sr.reveal('.skills__subtitle, .skills__text', {
+                origin: 'left', 
+                distance: '100px',
+                duration: 1000
+            });
+            
+            sr.reveal('.skills__data', {
+                interval: 200, 
+                origin: 'left', 
+                distance: '80px',
+                scale: 0.9,
+                duration: 800,
+                easing: 'cubic-bezier(0.25, 0.46, 0.43, 0.94)'
+            });
+            
+            sr.reveal('.skills__img', {
+                origin: 'right', 
+                distance: '100px', 
+                delay: 800,
+                scale: 0.8,
+                duration: 1200
+            });
+
+            // Work section - Card-like animations
+            sr.reveal('.work__item', {
+                interval: 250,
+                origin: 'bottom',
+                distance: '100px',
+                scale: 0.7,
+                duration: 1000,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                rotate: {x: 0, y: 0, z: 5}
+            });
+
+            // Contact section - Form field animations
+            sr.reveal('.contact__input', {
+                interval: 150,
+                origin: 'bottom',
+                distance: '60px',
+                scale: 0.95,
+                duration: 600
+            });
+
+            // Section titles - Dramatic entrance
+            sr.reveal('.section-title', {
+                origin: 'top',
+                distance: '80px',
+                duration: 1200,
+                scale: 0.8,
+                easing: 'cubic-bezier(0.25, 0.46, 0.43, 0.94)'
+            });
         }
+
+        // Additional Framer Motion-like button interactions using CSS
+        const buttons = document.querySelectorAll('.button, .cv-button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) translateY(-2px)';
+                this.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.43, 0.94)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) translateY(0)';
+            });
+            
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.95) translateY(0)';
+            });
+            
+            button.addEventListener('mouseup', function() {
+                this.style.transform = 'scale(1.05) translateY(-2px)';
+            });
+        });
+
+        // Framer Motion-like hover effects for work items
+        const workItems = document.querySelectorAll('.work__item');
+        workItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.43, 0.94)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+        });
     </script>
 </body>
 </html>
